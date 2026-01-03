@@ -1,327 +1,262 @@
-import React, { useState } from 'react';
-import { 
-  Heart, 
-  Users, 
-  Cpu, 
-  ChevronRight, 
-  CheckCircle, 
-  Calendar, 
-  ArrowRight,
-  Menu,
-  X,
-  MessageSquare,
-  ExternalLink,
-  Stethoscope,
-  Video
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanHub | Educación en Salud Preventiva</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .animate-blob { animation: blob 7s infinite; }
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .hidden-tab { display: none; }
+        .partner-logo { filter: grayscale(100%); transition: all 0.3s ease; opacity: 0.6; }
+        .partner-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-[#F0FDFF] min-h-screen flex flex-col">
 
-// Logos placeholders (reemplazar por /assets/ en producción)
-const logos = {
-  main: "https://placehold.co/200x80/0f172a/00b4d8?text=HumanHub",
-  partner1: "https://placehold.co/150x60/f8fafc/64748b?text=PPFirst",
-  partner2: "https://placehold.co/150x60/f8fafc/64748b?text=Teseo",
-  partner3: "https://placehold.co/150x60/f8fafc/64748b?text=GoodMarket"
-};
+    <!-- Navegación -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center cursor-pointer" onclick="showTab('home')">
+                    <!-- LOGO PRINCIPAL -->
+                    <div id="logo-container" class="h-12 flex items-center">
+                        <img src="assets/Logo_HumanHub.png" alt="HumanHub" class="h-10 w-auto object-contain" onerror="this.parentElement.innerHTML='<span class=\'text-2xl font-extrabold text-[#0F172A]\'>Human<span class=\'text-[#00B4D8]\'>Hub</span></span>'">
+                    </div>
+                </div>
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="showTab('consultas')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Consultas</button>
+                    <button onclick="showTab('educacion')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Educación</button>
+                    <button onclick="showTab('irene')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Irene IA</button>
+                    <a href="https://blog.humanhub.site" target="_blank" class="text-slate-600 hover:text-[#00B4D8] transition flex items-center gap-1">
+                        Blog <i data-lucide="external-link" class="w-3 h-3 opacity-50"></i>
+                    </a>
+                    <button class="bg-[#00B4D8] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#0099b8] transition-all shadow-md shadow-cyan-200/50">
+                        Reservar Cita
+                    </button>
+                </div>
 
-  const blogUrl = "https://blog.humanhub.site";
-
-  const Navbar = () => (
-    <nav className="bg-white border-b border-slate-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
-          <div className="flex items-center cursor-pointer" onClick={() => setActiveTab('home')}>
-            <img 
-              src={logos.main} 
-              alt="HumanHub Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
-              onError={(e) => { e.target.src = 'https://placehold.co/120x40?text=HumanHub'; }}
-            />
-          </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setActiveTab('consultas')} className={`${activeTab === 'consultas' ? 'text-[#00B4D8] font-semibold' : 'text-slate-600 hover:text-[#00B4D8] transition'}`}>Consultas</button>
-            <button onClick={() => setActiveTab('educacion')} className={`${activeTab === 'educacion' ? 'text-[#00B4D8] font-semibold' : 'text-slate-600 hover:text-[#00B4D8] transition'}`}>Educación</button>
-            <button onClick={() => setActiveTab('irene')} className={`${activeTab === 'irene' ? 'text-[#00B4D8] font-semibold' : 'text-slate-600 hover:text-[#00B4D8] transition'}`}>Irene IA</button>
-            
-            <a href={blogUrl} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-[#00B4D8] transition flex items-center gap-1">
-              Blog <ExternalLink size={14} className="opacity-50" />
-            </a>
-
-            <button className="bg-[#00B4D8] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#0099b8] transition-all shadow-md shadow-cyan-200/50">
-              Reservar Cita
-            </button>
-          </div>
-
-          <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600">
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-slate-600">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
 
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-100 p-4 space-y-4 shadow-xl">
-          <button onClick={() => {setActiveTab('consultas'); setIsMenuOpen(false)}} className="block w-full text-left py-2 text-slate-700 font-medium">Consultas</button>
-          <button onClick={() => {setActiveTab('educacion'); setIsMenuOpen(false)}} className="block w-full text-left py-2 text-slate-700 font-medium">Educación</button>
-          <button onClick={() => {setActiveTab('irene'); setIsMenuOpen(false)}} className="block w-full text-left py-2 text-slate-700 font-medium">Irene IA</button>
-          <a href={blogUrl} target="_blank" rel="noopener noreferrer" className="block w-full text-left py-2 text-slate-700 font-medium">Nuestro Blog</a>
-          <button className="w-full bg-[#00B4D8] text-white py-3 rounded-xl font-bold">Reservar Cita</button>
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-4 space-y-4 shadow-xl">
+            <button onclick="showTab('consultas')" class="block w-full text-left py-2 text-slate-700 font-medium">Consultas</button>
+            <button onclick="showTab('educacion')" class="block w-full text-left py-2 text-slate-700 font-medium">Educación</button>
+            <button onclick="showTab('irene')" class="block w-full text-left py-2 text-slate-700 font-medium">Irene IA</button>
+            <a href="https://blog.humanhub.site" target="_blank" class="block w-full text-left py-2 text-slate-700 font-medium">Nuestro Blog</a>
+            <button class="w-full bg-[#00B4D8] text-white py-3 rounded-xl font-bold">Reservar Cita</button>
         </div>
-      )}
     </nav>
-  );
 
-  const Home = () => (
-    <div className="animate-in fade-in duration-500">
-      <section className="relative py-20 overflow-hidden bg-[#F0FDFF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative z-10">
-            <span className="inline-block py-1 px-3 rounded-full bg-[#E0F7FA] text-[#00B4D8] text-xs font-bold uppercase tracking-wider mb-4">
-              Tu salud empieza hoy
-            </span>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[#0F172A] leading-[1.1] mb-6">
-              Educación para una vida <span className="text-[#00B4D8]">Preventiva</span>.
-            </h1>
-            <p className="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
-              Acompañamiento personalizado y herramientas tecnológicas para que tomes el control de tu bienestar de forma consciente.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={() => setActiveTab('consultas')} className="bg-[#00B4D8] text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:bg-[#0099b8] transition shadow-lg shadow-cyan-200/50 group">
-                Consulta Online <Video size={20} className="ml-2" />
-              </button>
-              <button onClick={() => setActiveTab('irene')} className="bg-white text-[#0F172A] border-2 border-slate-200 px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:border-[#00B4D8] hover:text-[#00B4D8] transition">
-                Conoce a Irene IA
-              </button>
+    <main class="flex-grow">
+        <!-- SECCIÓN: HOME -->
+        <div id="tab-home" class="tab-content">
+            <section class="relative py-20 overflow-hidden bg-[#F0FDFF]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative z-10">
+                        <span class="inline-block py-1 px-3 rounded-full bg-[#E0F7FA] text-[#00B4D8] text-xs font-bold uppercase tracking-wider mb-4">Tu salud empieza hoy</span>
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-[#0F172A] leading-[1.1] mb-6">Educación para una vida <span class="text-[#00B4D8]">Preventiva</span>.</h1>
+                        <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">Acompañamiento personalizado y herramientas tecnológicas para que tomes el control de tu bienestar de forma consciente.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showTab('consultas')" class="bg-[#00B4D8] text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:bg-[#0099b8] transition shadow-lg shadow-cyan-200/50">
+                                Consulta Online <i data-lucide="video" class="ml-2 w-5 h-5"></i>
+                            </button>
+                            <button onclick="showTab('irene')" class="bg-white text-[#0F172A] border-2 border-slate-200 px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:border-[#00B4D8] hover:text-[#00B4D8] transition">
+                                Conoce a Irene IA
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative hidden lg:block">
+                        <div class="absolute -top-10 -right-10 w-72 h-72 bg-[#00B4D8] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                        <div class="relative bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-cyan-100/50 border border-slate-100">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-[#E0F7FA] text-[#00B4D8] rounded-full flex items-center justify-center mr-4">
+                                    <i data-lucide="heart" class="w-6 h-6 fill-[#00B4D8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#0F172A]">Health Coaching</h4>
+                                    <p class="text-xs text-slate-400">Educación en salud personalizada</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <p class="text-sm italic text-slate-600">"Aprendí a gestionar mi alimentación y estrés de una forma que nunca imaginé."</p>
+                                    <p class="text-xs font-bold mt-2 text-[#00B4D8]">— María G., Paciente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Características -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold text-[#0F172A] mb-16">¿Cómo te ayudamos?</h2>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+                            <i data-lucide="video" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
+                            <h3 class="font-bold text-xl mb-3">Consulta Online</h3>
+                            <p class="text-slate-500 text-sm">Sesiones individuales de educación en salud y coaching personalizado.</p>
+                        </div>
+                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+                            <i data-lucide="users" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
+                            <h3 class="font-bold text-xl mb-3">Educación Grupal</h3>
+                            <p class="text-slate-500 text-sm">Talleres y seminarios dinámicos para aprender en comunidad.</p>
+                        </div>
+                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+                            <i data-lucide="cpu" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
+                            <h3 class="font-bold text-xl mb-3">Irene IA</h3>
+                            <p class="text-slate-500 text-sm">Nuestra asistente inteligente que te acompaña en tus metas diarias.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECCIÓN: ALIADOS CON LOGOS -->
+            <section class="py-16 bg-slate-50 border-t border-slate-100">
+                <div class="max-w-7xl mx-auto px-4 text-center">
+                    <h4 class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-12">Aliados que impulsan el cambio</h4>
+                    <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+                        <img src="assets/Logo_PPFirst.png" alt="PPFirst" class="partner-logo h-10 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">PPFirst</span>
+                        
+                        <img src="assets/Logo_Teseo.jpg" alt="Teseo" class="partner-logo h-12 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">TESEO</span>
+                        
+                        <img src="assets/Logo_GoodMarket.png" alt="GoodMarket" class="partner-logo h-12 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">GoodMarket</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN: CONSULTAS -->
+        <div id="tab-consultas" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold text-[#0F172A] mb-6">Consulta de Educación en Salud</h2>
+                        <p class="text-lg text-slate-600 mb-8 leading-relaxed">No es solo una cita médica, es un espacio de aprendizaje. Como Health Educator, te ayudo a entender tu cuerpo y a diseñar un plan de prevención a tu medida.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Evaluación inicial integral</div>
+                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Plan de hábitos personalizado</div>
+                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Seguimiento continuo vía App</div>
+                        </div>
+                        <button class="bg-[#00B4D8] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-200">Agendar Entrevista Gratuita</button>
+                    </div>
+                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100">
+                        <h3 class="text-xl font-bold mb-6 text-[#0F172A]">Áreas de especialidad:</h3>
+                        <div class="grid gap-4">
+                            <div class="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
+                                <h4 class="font-bold text-[#00B4D8]">Salud Metabólica</h4>
+                                <p class="text-sm text-slate-500">Gestión de glucosa, peso y energía diaria.</p>
+                            </div>
+                            <div class="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
+                                <h4 class="font-bold text-[#00B4D8]">Gestión del Estrés</h4>
+                                <p class="text-sm text-slate-500">Técnicas de regulación emocional y descanso.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="relative hidden lg:block">
-            <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#00B4D8] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div className="relative bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-cyan-100/50 border border-slate-100">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-[#E0F7FA] text-[#00B4D8] rounded-full flex items-center justify-center mr-4">
-                  <Heart size={24} fill="#00B4D8" />
+        </div>
+
+        <!-- SECCIÓN: EDUCACIÓN -->
+        <div id="tab-educacion" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-[#0F172A] mb-4">Talleres para Pacientes</h2>
+                <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-12">Aprender en grupo es más potente. Únete a nuestras próximas sesiones en vivo.</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+                        <span class="bg-[#E0F7FA] text-[#00B4D8] px-4 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">Próximo Taller</span>
+                        <h3 class="text-2xl font-bold mb-4">Prevención: El primer paso</h3>
+                        <p class="text-slate-600 mb-6">Aprende a leer las señales de tu cuerpo de forma interactiva.</p>
+                        <button class="w-full bg-[#0F172A] text-white py-4 rounded-2xl font-bold">Inscribirme</button>
+                    </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-[#0F172A]">Health Coaching</h4>
-                  <p className="text-xs text-slate-400">Educación en salud personalizada</p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                  <p className="text-sm italic text-slate-600">"Aprendí a gestionar mi alimentación y estrés de una forma que nunca imaginé."</p>
-                  <p className="text-xs font-bold mt-2 text-[#00B4D8]">— María G., Paciente</p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
 
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-[#0F172A] mb-4">¿Cómo te ayudamos?</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">Unimos la calidez humana de un coach con la precisión de la tecnología.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Video className="text-[#00B4D8]" size={32} />} 
-              title="Consulta Online" 
-              desc="Sesiones individuales de educación en salud y coaching para objetivos específicos." 
-            />
-            <FeatureCard 
-              icon={<Users className="text-[#00B4D8]" size={32} />} 
-              title="Educación Grupal" 
-              desc="Talleres y seminarios dinámicos para aprender sobre salud preventiva en comunidad." 
-            />
-            <FeatureCard 
-              icon={<Cpu className="text-[#00B4D8]" size={32} />} 
-              title="Irene IA" 
-              desc="Nuestra asistente inteligente que te acompaña en el seguimiento de tus metas de salud." 
-            />
-          </div>
-        </div>
-      </section>
-
-      <PartnersSection />
-    </div>
-  );
-
-  const Consultas = () => (
-    <div className="py-12 animate-in slide-in-from-bottom-4 duration-500 bg-[#F0FDFF]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-bold text-[#0F172A] mb-6">Consulta de Educación en Salud</h2>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-              No es solo una cita médica, es un espacio de aprendizaje. Como Health Educator, te ayudo a entender tu cuerpo y a diseñar un plan de prevención a tu medida.
-            </p>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center text-slate-700 font-medium">
-                <CheckCircle size={20} className="text-[#00B4D8] mr-3" /> Evaluación inicial integral
-              </li>
-              <li className="flex items-center text-slate-700 font-medium">
-                <CheckCircle size={20} className="text-[#00B4D8] mr-3" /> Plan de hábitos personalizado
-              </li>
-              <li className="flex items-center text-slate-700 font-medium">
-                <CheckCircle size={20} className="text-[#00B4D8] mr-3" /> Seguimiento continuo vía App
-              </li>
-            </ul>
-            <button className="bg-[#00B4D8] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-200">
-              Agendar Entrevista Gratuita
-            </button>
-          </div>
-          <div className="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100">
-             <h3 className="text-xl font-bold mb-6 text-[#0F172A]">Áreas de especialidad:</h3>
-             <div className="grid gap-4">
-                <div className="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
-                   <h4 className="font-bold text-[#00B4D8]">Salud Metabólica</h4>
-                   <p className="text-sm text-slate-500">Gestión de glucosa, peso y energía diaria.</p>
+        <!-- SECCIÓN: IRENE IA -->
+        <div id="tab-irene" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-gradient-to-r from-[#0F172A] to-[#00B4D8] rounded-[3rem] p-8 md:p-16 text-white relative shadow-2xl overflow-hidden">
+                    <div class="relative z-10 max-w-2xl">
+                        <i data-lucide="cpu" class="w-12 h-12 text-cyan-200 mb-8"></i>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Irene IA</h2>
+                        <p class="text-xl text-cyan-50 mb-8 leading-relaxed">Tu compañera tecnológica que ayuda a registrar tus hábitos y te ofrece consejos educativos basados en tu progreso diario.</p>
+                        <button class="bg-white text-[#00B4D8] px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Acceder a la Beta</button>
+                    </div>
                 </div>
-                <div className="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
-                   <h4 className="font-bold text-[#00B4D8]">Gestión del Estrés</h4>
-                   <p className="text-sm text-slate-500">Técnicas de regulación emocional y descanso.</p>
-                </div>
-                <div className="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
-                   <h4 className="font-bold text-[#00B4D8]">Higiene de Vida</h4>
-                   <p className="text-sm text-slate-500">Optimización de rutinas y entorno para la salud.</p>
-                </div>
-             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const Educacion = () => (
-    <div className="py-12 animate-in fade-in duration-500 bg-[#F0FDFF]">
-      <div className="max-w-7xl mx-auto px-4">
-        <header className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#0F172A] mb-4">Talleres para Pacientes</h2>
-          <p className="text-slate-600 text-xl max-w-2xl mx-auto">Aprender en grupo es más potente. Únete a nuestras próximas sesiones en vivo.</p>
-        </header>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-            <div className="flex justify-between items-start mb-6">
-               <span className="bg-[#E0F7FA] text-[#00B4D8] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Taller Online</span>
-               <Calendar className="text-slate-300" size={24} />
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-[#0F172A]">Prevención: El primer paso</h3>
-            <p className="text-slate-600 mb-6">Un taller interactivo para aprender a leer señales de tu cuerpo antes de que se conviertan en síntomas.</p>
-            <div className="flex items-center text-sm font-bold text-[#00B4D8] mb-6">
-              <Calendar size={16} className="mr-2" /> 15 de Abril • 18:00h
+        </div>
+    </main>
+
+    <footer class="bg-[#0F172A] text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 text-center md:text-left">
+            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
+                <img src="assets/Logo_HumanHub.png" alt="HumanHub" class="h-8 w-auto mb-4 brightness-0 invert" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="hidden text-2xl font-extrabold text-white mb-4">Human<span class="text-[#00B4D8]">Hub</span></span>
+                <p class="max-w-sm text-sm">Tu espacio de educación y tecnología para una salud preventiva real.</p>
             </div>
-            <button className="w-full bg-[#0F172A] text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition">Quiero inscribirme</button>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm flex flex-col justify-center items-center text-center">
-            <MessageSquare size={48} className="text-[#00B4D8] mb-6 opacity-30" />
-            <h3 className="text-xl font-bold mb-2">Charlas Gratuitas</h3>
-            <p className="text-slate-500 mb-6">Cada mes realizamos un directo resolviendo dudas sobre salud preventiva.</p>
-            <button className="text-[#00B4D8] font-bold hover:underline">Ver grabaciones anteriores →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const IreneIA = () => (
-    <div className="py-12 animate-in zoom-in-95 duration-500 bg-[#F0FDFF]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="bg-gradient-to-r from-[#0F172A] to-[#00B4D8] rounded-[3rem] p-8 md:p-16 text-white relative shadow-2xl overflow-hidden">
-          <div className="relative z-10 max-w-2xl">
-            <Cpu size={48} className="mb-8 text-cyan-200" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Irene IA</h2>
-            <p className="text-xl text-cyan-50 mb-8 leading-relaxed">
-              Tu compañera tecnológica en el camino de la salud. Irene te ayuda a registrar tus hábitos y te ofrece consejos educativos basados en tu progreso diario.
-            </p>
-            <div className="flex flex-wrap gap-4">
-               <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm border border-white/20">Recordatorios de Salud</div>
-               <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm border border-white/20">Triaje Educativo</div>
-               <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm border border-white/20">Seguimiento de Metas</div>
+            <div>
+                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Servicios</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><button onclick="showTab('consultas')" class="hover:text-[#00B4D8]">Consultas</button></li>
+                    <li><button onclick="showTab('educacion')" class="hover:text-[#00B4D8]">Talleres</button></li>
+                    <li><a href="https://blog.humanhub.site" target="_blank" class="hover:text-[#00B4D8]">Blog Salud</a></li>
+                </ul>
             </div>
-            <button className="mt-10 bg-white text-[#00B4D8] px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition-transform">
-              Acceder a la Beta
-            </button>
-          </div>
-          <div className="absolute -right-20 -bottom-20 opacity-10">
-            <Cpu size={400} />
-          </div>
         </div>
-      </div>
-    </div>
-  );
+        <div class="mt-16 text-center text-[10px] uppercase tracking-widest opacity-50">HumanHub • 2026</div>
+    </footer>
 
-  return (
-    <div className="min-h-screen bg-[#F0FDFF] flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        {activeTab === 'home' && <Home />}
-        {activeTab === 'consultas' && <Consultas />}
-        {activeTab === 'educacion' && <Educacion />}
-        {activeTab === 'irene' && <IreneIA />}
-      </main>
-      <footer className="bg-[#0F172A] text-slate-400 py-16">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 text-center md:text-left">
-          <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-            <img 
-              src={logos.main} 
-              alt="HumanHub Footer" 
-              className="h-8 w-auto mb-6 brightness-0 invert" 
-              onError={(e) => { e.target.style.display = 'none'; }}
-            />
-            <p className="max-w-sm text-sm">Tu espacio de educación y tecnología para una salud preventiva real.</p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-widest text-center md:text-left">Servicios</h4>
-            <ul className="space-y-3 text-sm flex flex-col items-center md:items-start">
-              <li className="cursor-pointer hover:text-[#00B4D8]" onClick={() => setActiveTab('consultas')}>Consultas Online</li>
-              <li className="cursor-pointer hover:text-[#00B4D8]" onClick={() => setActiveTab('educacion')}>Talleres Grupales</li>
-              <li className="cursor-pointer hover:text-[#00B4D8]" onClick={() => setActiveTab('irene')}>Irene IA</li>
-              <li><a href={blogUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#00B4D8]">Blog Salud</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-16 text-center text-[10px] uppercase tracking-widest opacity-50">HumanHub • 2026</div>
-      </footer>
-    </div>
-  );
-};
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
 
-const PartnersSection = () => (
-  <section className="py-16 bg-slate-50 border-t border-slate-100">
-     <div className="max-w-7xl mx-auto px-4 text-center">
-        <h4 className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-12">Aliados que impulsan el cambio</h4>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-70">
-           <PartnerLogo src={logos.partner1} name="PPFirst" />
-           <PartnerLogo src={logos.partner2} name="Teseo" />
-           <PartnerLogo src={logos.partner3} name="GoodMarket" />
-        </div>
-     </div>
-  </section>
-);
+        // Función para cambiar de pestaña
+        function showTab(tabId) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden-tab');
+            });
+            // Mostrar la seleccionada
+            document.getElementById('tab-' + tabId).classList.remove('hidden-tab');
+            
+            // Cerrar menú móvil si está abierto
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Hacer scroll hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-const PartnerLogo = ({ src, name }) => (
-  <img 
-    src={src} 
-    alt={name} 
-    className="h-10 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-    onError={(e) => { e.target.style.display = 'none'; }}
-  />
-);
-
-const FeatureCard = ({ icon, title, desc }) => (
-  <div className="bg-white p-8 rounded-[2rem] hover:shadow-xl hover:shadow-cyan-100/50 transition-all duration-300 group border border-slate-50 text-center">
-    <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-transform">{icon}</div>
-    <h3 className="text-xl font-bold text-[#0F172A] mb-3">{title}</h3>
-    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
-  </div>
-);
-
-export default App;
+        // Toggle Menú Móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
