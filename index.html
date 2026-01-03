@@ -30,26 +30,27 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center cursor-pointer" onclick="showTab('home')">
-                    <!-- LOGO PRINCIPAL -->
                     <div id="logo-container" class="h-12 flex items-center">
-                        <img src="assets/Logo_HumanHub.png" alt="HumanHub" class="h-10 w-auto object-contain" onerror="this.parentElement.innerHTML='<span class=\'text-2xl font-extrabold text-[#0F172A]\'>Human<span class=\'text-[#00B4D8]\'>Hub</span></span>'">
+                        <!-- Logo Principal: Si falla carga placeholder para vista previa -->
+                        <img src="Logo_HumanHub.png" alt="HumanHub" class="h-10 w-auto object-contain" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x80/0f172a/00b4d8?text=HumanHub';">
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <button onclick="showTab('consultas')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Consultas</button>
-                    <button onclick="showTab('educacion')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Educación</button>
-                    <button onclick="showTab('irene')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Irene IA</button>
+                    <button onclick="showTab('proposito')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Propósito</button>
+                    <button onclick="showTab('educacion')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Qué hacemos</button>
+                    <button onclick="showTab('talleres')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Encuentros</button>
+                    <button onclick="showTab('irene')" class="nav-link text-slate-600 hover:text-[#00B4D8] transition font-medium">Irenia IA</button>
                     <a href="https://blog.humanhub.site" target="_blank" class="text-slate-600 hover:text-[#00B4D8] transition flex items-center gap-1">
                         Blog <i data-lucide="external-link" class="w-3 h-3 opacity-50"></i>
                     </a>
-                    <button class="bg-[#00B4D8] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#0099b8] transition-all shadow-md shadow-cyan-200/50">
-                        Reservar Cita
+                    <button onclick="showTab('contacto')" class="bg-[#0F172A] text-white px-6 py-2.5 rounded-full font-medium hover:bg-slate-800 transition-all shadow-md">
+                        Contacto
                     </button>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-slate-600">
                         <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
@@ -58,50 +59,55 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Content -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-4 space-y-4 shadow-xl">
-            <button onclick="showTab('consultas')" class="block w-full text-left py-2 text-slate-700 font-medium">Consultas</button>
-            <button onclick="showTab('educacion')" class="block w-full text-left py-2 text-slate-700 font-medium">Educación</button>
-            <button onclick="showTab('irene')" class="block w-full text-left py-2 text-slate-700 font-medium">Irene IA</button>
+            <button onclick="showTab('proposito')" class="block w-full text-left py-2 text-slate-700 font-medium">Propósito</button>
+            <button onclick="showTab('educacion')" class="block w-full text-left py-2 text-slate-700 font-medium">Qué hacemos</button>
+            <button onclick="showTab('talleres')" class="block w-full text-left py-2 text-slate-700 font-medium">Encuentros</button>
+            <button onclick="showTab('irene')" class="block w-full text-left py-2 text-slate-700 font-medium">Irenia IA</button>
             <a href="https://blog.humanhub.site" target="_blank" class="block w-full text-left py-2 text-slate-700 font-medium">Nuestro Blog</a>
-            <button class="w-full bg-[#00B4D8] text-white py-3 rounded-xl font-bold">Reservar Cita</button>
+            <button onclick="showTab('contacto')" class="w-full bg-[#0F172A] text-white py-3 rounded-xl font-bold">Contacto</button>
         </div>
     </nav>
 
     <main class="flex-grow">
         <!-- SECCIÓN: HOME -->
         <div id="tab-home" class="tab-content">
-            <section class="relative py-20 overflow-hidden bg-[#F0FDFF]">
+            <section class="relative py-24 overflow-hidden bg-[#F0FDFF]">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
                     <div class="relative z-10">
-                        <span class="inline-block py-1 px-3 rounded-full bg-[#E0F7FA] text-[#00B4D8] text-xs font-bold uppercase tracking-wider mb-4">Tu salud empieza hoy</span>
-                        <h1 class="text-5xl md:text-6xl font-extrabold text-[#0F172A] leading-[1.1] mb-6">Educación para una vida <span class="text-[#00B4D8]">Preventiva</span>.</h1>
-                        <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">Acompañamiento personalizado y herramientas tecnológicas para que tomes el control de tu bienestar de forma consciente.</p>
+                        <span class="inline-block py-1 px-3 rounded-full bg-[#E0F7FA] text-[#00B4D8] text-xs font-bold uppercase tracking-wider mb-4">Salud Preventiva & Innovación Social</span>
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-[#0F172A] leading-[1.1] mb-6">Educar para <span class="text-[#00B4D8]">Cuidar</span>, Tecnología para <span class="text-[#00B4D8]">Prevenir</span>.</h1>
+                        <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed font-light italic">"HumanHub educa para cuidar la salud; no trata enfermedades."</p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="showTab('consultas')" class="bg-[#00B4D8] text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:bg-[#0099b8] transition shadow-lg shadow-cyan-200/50">
-                                Consulta Online <i data-lucide="video" class="ml-2 w-5 h-5"></i>
+                            <button onclick="showTab('educacion')" class="bg-[#00B4D8] text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:bg-[#0099b8] transition shadow-lg shadow-cyan-200/50">
+                                Explorar Programas <i data-lucide="book-open" class="ml-2 w-5 h-5"></i>
                             </button>
                             <button onclick="showTab('irene')" class="bg-white text-[#0F172A] border-2 border-slate-200 px-8 py-4 rounded-2xl font-bold flex items-center justify-center hover:border-[#00B4D8] hover:text-[#00B4D8] transition">
-                                Conoce a Irene IA
+                                Probar Irenia IA
                             </button>
                         </div>
                     </div>
                     <div class="relative hidden lg:block">
                         <div class="absolute -top-10 -right-10 w-72 h-72 bg-[#00B4D8] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-                        <div class="relative bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-cyan-100/50 border border-slate-100">
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-[#E0F7FA] text-[#00B4D8] rounded-full flex items-center justify-center mr-4">
-                                    <i data-lucide="heart" class="w-6 h-6 fill-[#00B4D8]"></i>
+                        <div class="relative bg-white p-10 rounded-[3rem] shadow-2xl shadow-cyan-100/50 border border-slate-100">
+                            <div class="flex items-center mb-8">
+                                <div class="w-14 h-14 bg-[#E0F7FA] text-[#00B4D8] rounded-2xl flex items-center justify-center mr-4 shadow-inner">
+                                    <i data-lucide="shield-check" class="w-8 h-8"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-[#0F172A]">Health Coaching</h4>
-                                    <p class="text-xs text-slate-400">Educación en salud personalizada</p>
+                                    <h4 class="font-bold text-[#0F172A] text-xl">Alfabetización en Salud</h4>
+                                    <p class="text-sm text-slate-400">Decisiones informadas para el bienestar</p>
                                 </div>
                             </div>
-                            <div class="space-y-4">
-                                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <p class="text-sm italic text-slate-600">"Aprendí a gestionar mi alimentación y estrés de una forma que nunca imaginé."</p>
-                                    <p class="text-xs font-bold mt-2 text-[#00B4D8]">— María G., Paciente</p>
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4 text-slate-600 bg-slate-50 p-4 rounded-2xl">
+                                    <i data-lucide="check-circle" class="text-teal-500 w-5 h-5"></i>
+                                    <span class="text-sm font-medium">Hábitos de vida sostenibles</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-slate-600 bg-slate-50 p-4 rounded-2xl">
+                                    <i data-lucide="check-circle" class="text-teal-500 w-5 h-5"></i>
+                                    <span class="text-sm font-medium">Movimiento y Nutrición consciente</span>
                                 </div>
                             </div>
                         </div>
@@ -109,127 +115,264 @@
                 </div>
             </section>
 
-            <!-- Características -->
+            <!-- Pilares -->
             <section class="py-24 bg-white">
-                <div class="max-w-7xl mx-auto px-4 text-center">
-                    <h2 class="text-3xl font-bold text-[#0F172A] mb-16">¿Cómo te ayudamos?</h2>
-                    <div class="grid md:grid-cols-3 gap-8 text-center">
-                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
-                            <i data-lucide="video" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
-                            <h3 class="font-bold text-xl mb-3">Consulta Online</h3>
-                            <p class="text-slate-500 text-sm">Sesiones individuales de educación en salud y coaching personalizado.</p>
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="text-center p-6">
+                            <i data-lucide="graduation-cap" class="w-10 h-10 text-[#00B4D8] mx-auto mb-4"></i>
+                            <h3 class="font-bold mb-2">Educación</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">Programas para el público general sobre autocuidado real.</p>
                         </div>
-                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
-                            <i data-lucide="users" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
-                            <h3 class="font-bold text-xl mb-3">Educación Grupal</h3>
-                            <p class="text-slate-500 text-sm">Talleres y seminarios dinámicos para aprender en comunidad.</p>
+                        <div class="text-center p-6">
+                            <i data-lucide="megaphone" class="w-10 h-10 text-[#00B4D8] mx-auto mb-4"></i>
+                            <h3 class="font-bold mb-2">Encuentros</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">Talleres y charlas abiertas para sensibilizar comunidades.</p>
                         </div>
-                        <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
-                            <i data-lucide="cpu" class="w-8 h-8 text-[#00B4D8] mx-auto mb-6"></i>
-                            <h3 class="font-bold text-xl mb-3">Irene IA</h3>
-                            <p class="text-slate-500 text-sm">Nuestra asistente inteligente que te acompaña en tus metas diarias.</p>
+                        <div class="text-center p-6">
+                            <i data-lucide="users-2" class="w-10 h-10 text-[#00B4D8] mx-auto mb-4"></i>
+                            <h3 class="font-bold mb-2">Comunidad</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">Redes de cuidado y aprendizaje compartido.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <i data-lucide="sparkles" class="w-10 h-10 text-[#00B4D8] mx-auto mb-4"></i>
+                            <h3 class="font-bold mb-2">Irenia IA</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">Acompañamiento digital educativo las 24 horas.</p>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- SECCIÓN: ALIADOS CON LOGOS -->
-            <section class="py-16 bg-slate-50 border-t border-slate-100">
+            <!-- Aliados -->
+            <section class="py-20 bg-slate-50 border-y border-slate-100">
                 <div class="max-w-7xl mx-auto px-4 text-center">
-                    <h4 class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-12">Aliados que impulsan el cambio</h4>
-                    <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-                        <img src="assets/Logo_PPFirst.png" alt="PPFirst" class="partner-logo h-10 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">PPFirst</span>
+                    <h4 class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-12">Impulsando el cambio con</h4>
+                    <div class="flex flex-wrap justify-center items-center gap-16">
+                        <div class="flex flex-col items-center">
+                            <img src="Logo_PPFirst.png" alt="PPFirst" class="partner-logo h-10 w-auto" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/150x60/f8fafc/64748b?text=PPFirst';">
+                        </div>
                         
-                        <img src="assets/Logo_Teseo.jpg" alt="Teseo" class="partner-logo h-12 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">TESEO</span>
+                        <div class="flex flex-col items-center">
+                            <img src="Logo_Teseo.jpg" alt="Teseo" class="partner-logo h-12 w-auto" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/150x60/f8fafc/64748b?text=Teseo';">
+                        </div>
                         
-                        <img src="assets/Logo_GoodMarket.png" alt="GoodMarket" class="partner-logo h-12 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-slate-400 font-bold uppercase tracking-widest text-xs">GoodMarket</span>
+                        <div class="flex flex-col items-center">
+                            <img src="Logo_GoodMarket.png" alt="GoodMarket" class="partner-logo h-10 w-auto" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/150x60/f8fafc/64748b?text=GoodMarket';">
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- SECCIÓN: CONSULTAS -->
-        <div id="tab-consultas" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-4xl font-bold text-[#0F172A] mb-6">Consulta de Educación en Salud</h2>
-                        <p class="text-lg text-slate-600 mb-8 leading-relaxed">No es solo una cita médica, es un espacio de aprendizaje. Como Health Educator, te ayudo a entender tu cuerpo y a diseñar un plan de prevención a tu medida.</p>
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Evaluación inicial integral</div>
-                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Plan de hábitos personalizado</div>
-                            <div class="flex items-center text-slate-700 font-medium"><i data-lucide="check-circle" class="text-[#00B4D8] mr-3 w-5 h-5"></i> Seguimiento continuo vía App</div>
-                        </div>
-                        <button class="bg-[#00B4D8] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-200">Agendar Entrevista Gratuita</button>
+        <!-- SECCIÓN: PROPÓSITO -->
+        <div id="tab-proposito" class="tab-content hidden-tab py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-[#0F172A] mb-8">Nuestra Razón de Ser</h2>
+                <div class="prose prose-lg text-slate-600 mx-auto text-left">
+                    <p class="mb-6 leading-relaxed text-center italic font-light text-xl text-slate-500">"HumanHub es una plataforma de educación en salud preventiva e innovación social que promueve el autocuidado y la alfabetización en salud."</p>
+                    <div class="bg-[#F0FDFF] p-8 rounded-[2rem] border border-cyan-50 my-10">
+                        <h4 class="text-[#00B4D8] font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="target" class="w-5 h-5"></i> Nuestro Propósito
+                        </h4>
+                        <p class="text-[#0F172A] font-medium leading-relaxed">Contribuir a que las personas comprendan su salud, desarrollen hábitos conscientes y puedan tomar mejores decisiones informadas antes de necesitar atención clínica.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100">
-                        <h3 class="text-xl font-bold mb-6 text-[#0F172A]">Áreas de especialidad:</h3>
-                        <div class="grid gap-4">
-                            <div class="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
-                                <h4 class="font-bold text-[#00B4D8]">Salud Metabólica</h4>
-                                <p class="text-sm text-slate-500">Gestión de glucosa, peso y energía diaria.</p>
-                            </div>
-                            <div class="p-4 bg-[#F0FDFF] rounded-2xl border border-cyan-50">
-                                <h4 class="font-bold text-[#00B4D8]">Gestión del Estrés</h4>
-                                <p class="text-sm text-slate-500">Técnicas de regulación emocional y descanso.</p>
-                            </div>
+                    <div class="grid md:grid-cols-2 gap-8 mt-12">
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#0F172A] mb-6">Enfoque Central</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4"><i data-lucide="check" class="text-cyan-500 mt-1"></i> Educación antes que intervención.</li>
+                                <li class="flex items-start gap-4"><i data-lucide="check" class="text-cyan-500 mt-1"></i> Prevención antes que enfermedad.</li>
+                                <li class="flex items-start gap-4"><i data-lucide="check" class="text-cyan-500 mt-1"></i> Lenguaje claro y accesible para todos.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-[#0F172A] mb-4">Lo que NO somos</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">No somos una clínica ni reemplazamos a profesionales de la salud. No ofrecemos diagnósticos ni tratamientos. Nuestro enfoque es estrictamente educativo y comunitario.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN: EDUCACIÓN -->
-        <div id="tab-educacion" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
+        <!-- SECCIÓN: QUÉ HACEMOS -->
+        <div id="tab-educacion" class="tab-content hidden-tab py-20 bg-[#F0FDFF]">
             <div class="max-w-7xl mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold text-[#0F172A] mb-4">Talleres para Pacientes</h2>
-                <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-12">Aprender en grupo es más potente. Únete a nuestras próximas sesiones en vivo.</p>
-                <div class="grid md:grid-cols-2 gap-8 text-left">
-                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-                        <span class="bg-[#E0F7FA] text-[#00B4D8] px-4 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">Próximo Taller</span>
-                        <h3 class="text-2xl font-bold mb-4">Prevención: El primer paso</h3>
-                        <p class="text-slate-600 mb-6">Aprende a leer las señales de tu cuerpo de forma interactiva.</p>
-                        <button class="w-full bg-[#0F172A] text-white py-4 rounded-2xl font-bold">Inscribirme</button>
+                <h2 class="text-4xl font-bold text-[#0F172A] mb-16">Qué Ofrecemos</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 text-left">
+                        <div class="w-12 h-12 bg-blue-50 text-[#00B4D8] rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="book-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Alfabetización</h3>
+                        <p class="text-xs text-slate-500">Programas sobre hábitos de vida, descanso y manejo del estrés con lenguaje accesible.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 text-left">
+                        <div class="w-12 h-12 bg-blue-50 text-[#00B4D8] rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="mic"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Encuentros</h3>
+                        <p class="text-xs text-slate-500">Talleres educativos, charlas abiertas y ferias educativas de salud preventiva.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 text-left">
+                        <div class="w-12 h-12 bg-blue-50 text-[#00B4D8] rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="share-2"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Comunidad</h3>
+                        <p class="text-xs text-slate-500">Conexión entre personas, educadores y organizaciones para redes de cuidado.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 text-left">
+                        <div class="w-12 h-12 bg-blue-50 text-[#00B4D8] rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Irenia IA</h3>
+                        <p class="text-xs text-slate-500">Innovación tecnológica para acompañar el aprendizaje y reforzar hábitos.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN: IRENE IA -->
-        <div id="tab-irene" class="tab-content hidden-tab py-12 bg-[#F0FDFF]">
+        <!-- SECCIÓN: ENCUENTROS -->
+        <div id="tab-talleres" class="tab-content hidden-tab py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4">
-                <div class="bg-gradient-to-r from-[#0F172A] to-[#00B4D8] rounded-[3rem] p-8 md:p-16 text-white relative shadow-2xl overflow-hidden">
-                    <div class="relative z-10 max-w-2xl">
-                        <i data-lucide="cpu" class="w-12 h-12 text-cyan-200 mb-8"></i>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Irene IA</h2>
-                        <p class="text-xl text-cyan-50 mb-8 leading-relaxed">Tu compañera tecnológica que ayuda a registrar tus hábitos y te ofrece consejos educativos basados en tu progreso diario.</p>
-                        <button class="bg-white text-[#00B4D8] px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Acceder a la Beta</button>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-[#0F172A] mb-4">Encuentros y Talleres</h2>
+                    <p class="text-slate-500 max-w-2xl mx-auto">Buscamos informar, sensibilizar y empoderar a través de la experiencia colectiva.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8 text-left">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-100 text-[#00B4D8] flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold mb-2">Talleres de Autocuidado</h4>
+                                <p class="text-sm text-slate-500">Sesiones prácticas para desarrollar hábitos conscientes en el día a día.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-100 text-[#00B4D8] flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold mb-2">Charlas Sensibilizadoras</h4>
+                                <p class="text-sm text-slate-500">Conversatorios abiertos sobre la importancia de la prevención activa.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-100 text-[#00B4D8] flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold mb-2">Ferias de Salud Comunitaria</h4>
+                                <p class="text-sm text-slate-500">Espacios de encuentro entre ciudadanos e instituciones para la alfabetización.</p>
+                            </div>
+                        </div>
                     </div>
+                    <div class="bg-slate-50 p-10 rounded-[3rem] border border-slate-100">
+                        <div class="text-center">
+                            <i data-lucide="calendar" class="w-12 h-12 text-[#00B4D8] mx-auto mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-4">Próximas Fechas</h3>
+                            <p class="text-slate-500 mb-8 italic">"Estamos programando nuevos espacios educativos."</p>
+                            <button class="bg-[#0F172A] text-white px-8 py-3 rounded-full font-bold w-full hover:bg-slate-800 transition">Suscribirse para avisos</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: IRENIA IA -->
+        <div id="tab-irene" class="tab-content hidden-tab py-20 bg-[#F0FDFF]">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-[#0F172A] rounded-[3rem] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl">
+                    <div class="relative z-10 max-w-xl">
+                        <div class="w-20 h-20 bg-cyan-500/20 rounded-[1.5rem] flex items-center justify-center mb-10 border border-cyan-500/30">
+                            <i data-lucide="brain-circuit" class="w-10 h-10 text-cyan-400"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Irenia IA</h2>
+                        <p class="text-xl text-cyan-100/70 mb-10 leading-relaxed">Irenia es una asistente digital educativa en salud preventiva diseñada para acompañar el aprendizaje y reforzar el autocuidado.</p>
+                        
+                        <div class="grid gap-6 mb-12">
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="book-check" class="text-cyan-400 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Acompañar el Aprendizaje</h4>
+                                    <p class="text-sm text-slate-400">Refuerza conceptos educativos y facilita información clara 24/7.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="compass" class="text-cyan-400 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Derivación Responsable</h4>
+                                    <p class="text-sm text-slate-400">Orienta al usuario y ayuda a sostener hábitos sin ofrecer servicios clínicos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-2xl mb-10">
+                            <p class="text-[10px] text-cyan-200 font-bold uppercase tracking-widest mb-1 italic">Importante:</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Irenia no diagnostica ni ofrece atención médica. No sustituye la consulta profesional.</p>
+                        </div>
+
+                        <button class="bg-[#00B4D8] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform">
+                            Conocer a Irenia
+                        </button>
+                    </div>
+                    <div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none hidden lg:block">
+                        <i data-lucide="cpu" class="w-[500px] h-[500px]"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: CONTACTO -->
+        <div id="tab-contacto" class="tab-content hidden-tab py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-[#0F172A] mb-8">Hablemos</h2>
+                <p class="text-slate-500 mb-12">¿Quieres organizar un taller, colaborar con nosotros o simplemente saber más?</p>
+                <div class="bg-slate-50 p-10 rounded-[3rem] border border-slate-100 max-w-lg mx-auto">
+                    <p class="text-[#0F172A] font-bold mb-4">Contáctanos vía Email:</p>
+                    <a href="mailto:hola@humanhub.site" class="text-2xl font-extrabold text-[#00B4D8] hover:underline">hola@humanhub.site</a>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-[#0F172A] text-slate-400 py-16">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 text-center md:text-left">
-            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-                <img src="assets/Logo_HumanHub.png" alt="HumanHub" class="h-8 w-auto mb-4 brightness-0 invert" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="hidden text-2xl font-extrabold text-white mb-4">Human<span class="text-[#00B4D8]">Hub</span></span>
-                <p class="max-w-sm text-sm">Tu espacio de educación y tecnología para una salud preventiva real.</p>
+    <footer class="bg-[#0F172A] text-slate-400 py-20 mt-auto border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <!-- Logo Footer con respaldo -->
+                    <img src="Logo_HumanHub.png" alt="HumanHub" class="h-10 w-auto mb-6 brightness-0 invert mx-auto md:mx-0" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/200x80/ffffff/0f172a?text=HumanHub';">
+                    <p class="max-w-md text-sm leading-relaxed mb-6 mx-auto md:mx-0">
+                        Plataforma de educación en salud preventiva e innovación social. Trabajamos antes de la enfermedad para una vida más consciente.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Secciones</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><button onclick="showTab('proposito')" class="hover:text-white">Propósito</button></li>
+                        <li><button onclick="showTab('educacion')" class="hover:text-white">Qué hacemos</button></li>
+                        <li><button onclick="showTab('talleres')" class="hover:text-white">Encuentros</button></li>
+                        <li><button onclick="showTab('irene')" class="hover:text-white">Irenia IA</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Recursos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="https://blog.humanhub.site" target="_blank" class="hover:text-white">Blog Salud</a></li>
+                        <li><a href="#" class="hover:text-white">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white">Ética en IA</a></li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Servicios</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><button onclick="showTab('consultas')" class="hover:text-[#00B4D8]">Consultas</button></li>
-                    <li><button onclick="showTab('educacion')" class="hover:text-[#00B4D8]">Talleres</button></li>
-                    <li><a href="https://blog.humanhub.site" target="_blank" class="hover:text-[#00B4D8]">Blog Salud</a></li>
-                </ul>
+
+            <!-- DISCLAIMER OBLIGATORIO -->
+            <div class="border-t border-white/5 pt-10 text-center">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">Declaración Importante</p>
+                <p class="text-xs max-w-3xl mx-auto text-slate-500 leading-relaxed italic">
+                    HumanHub no ofrece servicios médicos ni terapéuticos. Sus contenidos, actividades y herramientas digitales (incluyendo Irenia IA) tienen fines exclusivamente educativos y no sustituyen la atención profesional de la salud.
+                </p>
+                <div class="mt-10 text-[10px] opacity-40 uppercase tracking-widest">Educación en Salud Preventiva • 2026</div>
             </div>
         </div>
-        <div class="mt-16 text-center text-[10px] uppercase tracking-widest opacity-50">HumanHub • 2026</div>
     </footer>
 
     <script>
@@ -238,17 +381,20 @@
 
         // Función para cambiar de pestaña
         function showTab(tabId) {
-            // Ocultar todos los contenidos
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.add('hidden-tab');
             });
-            // Mostrar la seleccionada
-            document.getElementById('tab-' + tabId).classList.remove('hidden-tab');
+            const target = document.getElementById('tab-' + tabId);
+            if(target) {
+                target.classList.remove('hidden-tab');
+            }
             
-            // Cerrar menú móvil si está abierto
-            document.getElementById('mobile-menu').classList.add('hidden');
+            // Cerrar menú móvil
+            const menu = document.getElementById('mobile-menu');
+            if(!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
             
-            // Hacer scroll hacia arriba
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
